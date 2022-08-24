@@ -18,7 +18,7 @@ const Modal = ({ gradient, handleClose }) => {
     });
 
   const copyToClipboard = () => {
-    copy(gradient);
+    copy(`background: ${gradient}`);
     notify();
   };
   return (
@@ -30,7 +30,7 @@ const Modal = ({ gradient, handleClose }) => {
         >
           <VscChromeClose size={25} />
         </span>
-        {gradient}
+        {`background: ${gradient}`}
         <Button text={"Copy to clipboard"} handleClick={copyToClipboard} />
       </div>
       <ToastContainer
