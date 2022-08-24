@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Button from "./Button";
+
 import { AiOutlineClose, AiOutlineMenu, AiOutlineGithub } from "react-icons/ai";
 import { Link } from "react-router-dom";
 export default function Navbar() {
@@ -13,7 +15,7 @@ export default function Navbar() {
 
         <div
           onClick={() => setOpen(!open)}
-          className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden"
+          className="text-3xl absolute right-8 top-5 cursor-pointer md:hidden"
         >
           {open ? (
             <AiOutlineClose size={25} color={"white"} />
@@ -29,16 +31,16 @@ export default function Navbar() {
           }`}
         >
           <li className="md:ml-8 text-md md:my-0 my-7">
-            <Link to={"/"}>Home</Link>
+            <Link to="/">Home</Link>
           </li>
-          <li className="md:ml-8 text-md md:my-0 my-7">
-            <Link to={"/library"}>Library</Link>
-          </li>
+          <Link to="/library" className="md:ml-8 text-md md:my-0 my-7">
+            <Button text={"Explore gradients"} />
+          </Link>
           <a href={"https://github.com/mafzaldev"}>
             <AiOutlineGithub
               size={30}
               color={"white"}
-              className="md:mx-5 mx-0"
+              className="md:mx-5 sm:mt-0 mt-5"
             />
           </a>
         </ul>
