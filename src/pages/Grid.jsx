@@ -1,19 +1,25 @@
 import React, { useCallback, useEffect, useState } from "react";
 import GridItem from "../components/GridItem";
-import Modal from "../components/Modal";
+import copy from "copy-to-clipboard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Grid = () => {
   const [gradients, setGradients] = useState([]);
-  const [selectedGradient, setSelectedGradient] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const notify = () =>
+    toast.success("Gradient copied to clipboard", {
+      position: "bottom-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
-  const sendGradient = (gradient) => {
-    setSelectedGradient(gradient);
-    handleModal();
-  };
-
-  const handleModal = () => {
-    setShowModal((prevState) => !prevState);
+  const copyToClipboard = (selectedGradient) => {
+    copy(`background: ${selectedGradient}`);
+    notify();
   };
 
   const fetchGradients = useCallback(async () => {
@@ -55,13 +61,21 @@ const Grid = () => {
             key={index}
             name={gradient.name}
             colors={gradient.colors}
-            sendGradient={sendGradient}
+            sendGradient={copyToClipboard}
           />
         ))}
       </div>
-      {showModal && (
-        <Modal gradient={selectedGradient} handleClose={handleModal} />
-      )}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

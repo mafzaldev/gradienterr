@@ -15,5 +15,7 @@
 
   body {
     background-color: #0b0b0b;
+    background-image: url(./assets/dots.png);
+    background-size: contain;
   }
 }

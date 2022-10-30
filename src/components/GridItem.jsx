@@ -34,8 +34,8 @@ const GridItem = ({ name, colors, sendGradient }) => {
     <div
       style={{ backgroundImage: gradient }}
       className="lg:h-32 lg:w-72 h-48 w-80 rounded flex justify-center items-center text-black
-      hover:drop-shadow-xl hover:scale-105 ease-in-out duration-150 cursor-pointer"
-      onClick={() => {
+      hover:drop-shadow-xl hover:scale-105 ease-in-out duration-150 cursor-pointer select-none"
+      onDoubleClick={() => {
         sendGradient(gradient);
       }}
     >
