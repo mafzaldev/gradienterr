@@ -54,7 +54,7 @@ const Generator = () => {
     });
   const infoAlert = () =>
     toast.info("Double click on the gradient to copy!", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 400,
       hideProgressBar: true,
       closeOnClick: true,
@@ -91,7 +91,7 @@ const Generator = () => {
             <input
               type="color"
               name="color01"
-              className="w-32 h-12 cursor-pointer"
+              className="w-32 h-12 rounded cursor-pointer"
               value={colors.color01}
               onChange={handleChange}
             />
