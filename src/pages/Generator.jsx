@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Button from "../components/Button";
 import { AiOutlineRotateRight } from "react-icons/ai";
+import Button from "../components/Button";
 
 import copy from "copy-to-clipboard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const DIRECTIONS = ["to right", "to left", "to bottom", "to top"];
+
 const Generator = () => {
-  const directions = ["to right", "to left", "to bottom", "to top"];
   const [direction, setDirection] = useState(0);
   const [colors, setColors] = useState({
     color01: "#06b6d4",
@@ -15,7 +16,7 @@ const Generator = () => {
   });
 
   const [gradient, setGradient] = useState(
-    `linear-gradient(${directions[direction]},${colors.color01},${colors.color02})`
+    `linear-gradient(${DIRECTIONS[direction]},${colors.color01},${colors.color02})`
   );
 
   const handleChange = (event) => {
@@ -32,7 +33,7 @@ const Generator = () => {
 
   const changeDirection = (e) => {
     e.preventDefault();
-    if (direction < directions.length - 1) {
+    if (direction < DIRECTIONS.length - 1) {
       setDirection(direction + 1);
     } else setDirection(0);
   };
@@ -64,7 +65,7 @@ const Generator = () => {
     });
   useEffect(() => {
     setGradient(
-      `linear-gradient(${directions[direction]},${colors.color01},${colors.color02})`
+      `linear-gradient(${DIRECTIONS[direction]},${colors.color01},${colors.color02})`
     );
     // eslint-disable-next-line
   }, [colors, direction]);
@@ -72,6 +73,7 @@ const Generator = () => {
   useEffect(() => {
     infoAlert();
   }, []);
+
   return (
     <div className="flex flex-col">
       <h1 className="text-white mt-24 md:text-4xl text-3xl font-bold text-center">
@@ -80,25 +82,24 @@ const Generator = () => {
       <div className="flex md:flex-row flex-col justify-center items-center gap-5 md:my-20 my-12">
         <div
           style={{ backgroundImage: gradient }}
-          className={`flex justify-center items-center xl:w-6/12 xl:h-[339px] lg:w-7/12 lg:h-[310px] md:w-8/12 md:h-72 w-11/12 h-64 p-1 rounded
-        hover:drop-shadow-2xl cursor-pointer`}
+          className={`flex justify-center items-center xl:w-6/12 xl:h-[339px] lg:w-7/12 lg:h-[310px] md:w-8/12 md:h-72 w-11/12 h-64 p-1 rounded hover:drop-shadow-2xl cursor-pointer`}
           onDoubleClick={() => {
             copyToClipboard();
           }}
         ></div>
         <div className="md:w-3/12 w-10/12 flex flex-col items-center gap-5">
-          <div className="w-10/12 flex md:flex-col flex-row justify-around items-center gap-5">
+          <div className="w-10/12 flex justify-around items-center gap-5">
             <input
               type="color"
               name="color01"
-              className="w-32 h-12 rounded cursor-pointer"
+              className="w-20 h-20 rounded cursor-pointer bg-transparent"
               value={colors.color01}
               onChange={handleChange}
             />
             <input
               type="color"
               name="color02"
-              className="w-32 h-12 rounded cursor-pointer"
+              className="w-20 h-20 rounded cursor-pointer bg-transparent"
               value={colors.color02}
               onChange={handleChange}
             />
@@ -108,7 +109,7 @@ const Generator = () => {
               text={<AiOutlineRotateRight size={20} />}
               handleClick={changeDirection}
             />
-            <Button text={"SWAP COLORS"} handleClick={swapColors} />
+            <Button text={"Swap Colors"} handleClick={swapColors} />
           </div>
         </div>
       </div>

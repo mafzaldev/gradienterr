@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-import { AiOutlineClose, AiOutlineMenu, AiOutlineGithub } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineGithub, AiOutlineMenu } from "react-icons/ai";
 import { Link } from "react-router-dom";
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function Navbar() {
         <ul
           className={`md:flex md:items-center md:pb-0 pb-12 absolute bg-[#131414] text-white md:static md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9
           transition-all duration-500 ease-in ${
-            open ? "top-20 " : "top-[-490px]"
+            open ? "top-16 " : "top-[-490px]"
           }`}
         >
           <li className="md:ml-8 text-md md:my-0 my-7">
@@ -39,7 +39,7 @@ export default function Navbar() {
             <AiOutlineGithub
               size={30}
               color={"white"}
-              className="md:mx-5 sm:mt-0 mt-5"
+              className="md:mx-5 md:mt-0 mt-5"
             />
           </a>
         </ul>
